@@ -27,11 +27,27 @@ function App() {
         <p>{data.restaurant.description}</p>
         <img
           src="https://f.roocdn.com/images/menus/17697/header-image.jpg"
-          alt="resto-photo"
+          alt="resto"
         />
       </div>
       <div className="k">
-        <div className="M"></div>
+        <div className="M">
+          <div>
+            {data.categories.map((category, index) => {
+              return (
+                <>
+                  {index < 6 && (
+                    <div>
+                      <h2>{category.name}</h2>
+                      <h3>{category.meals}</h3>
+                      {/* // <span>key={index}</span> */}
+                    </div>
+                  )}
+                </>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );
