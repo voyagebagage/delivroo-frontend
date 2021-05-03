@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-
 import "./App.css";
-
 import axios from "axios";
 
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const fetchData = async () => {
-    const response = await axios.get("http://localhost:3100/");
-    // console.log(response.data);
-    setData(response.data);
-    setIsLoading(false);
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        "https://delivroo-backend.herokuapp.com/"
+      );
+      console.log(response.data);
+      setData(response.data);
+      setIsLoading(false);
+    };
+
     fetchData();
   }, []);
 
