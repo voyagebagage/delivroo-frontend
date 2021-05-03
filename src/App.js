@@ -21,7 +21,19 @@ function App() {
   return isLoading ? (
     <span>En cours de chargement... </span>
   ) : (
-    <h2>{data.restaurant.name}</h2>
+    <>
+      <div className="h">
+        <h2>{data.restaurant.name}</h2>
+        <p>{data.restaurant.description}</p>
+        <img
+          src="https://f.roocdn.com/images/menus/17697/header-image.jpg"
+          alt="resto-photo"
+        />
+      </div>
+      <div className="k">
+        <div className="M"></div>
+      </div>
+    </>
   );
 }
 
