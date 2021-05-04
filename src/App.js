@@ -33,14 +33,27 @@ function App() {
       <div className="k">
         <div className="M">
           <div>
-            {data.categories.map((category, index) => {
+            {data.categories.map((tab, index) => {
               return (
                 <>
                   {index < 6 && (
                     <div>
-                      <h2>{category.name}</h2>
-                      <h3>{category.meals}</h3>
-                      {/* // <span>key={index}</span> */}
+                      <h2>{tab.name}</h2>
+                      <div>
+                        {tab.meals.map((meal, index) => {
+                          return (
+                            <>
+                              <h3>{meal.title}</h3>
+                              <p>{meal.description}</p>
+                              <div>
+                                <span>{meal.price}</span>
+                                {meal.popular && <span>POP</span>}
+                              </div>
+                              {/* <span>key={index}</span> */}
+                            </>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
                 </>
