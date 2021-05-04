@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import Item from "./component/Item/Item";
-import Header from "./component/Header/Header";
+import Item from "./component/Item";
+import Header from "./component/Header";
 // import Restaurant from "../Restaurant/Restaurant";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       const response = await axios.get(
         "https://delivroo-backend.herokuapp.com/"
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     };
@@ -32,32 +32,18 @@ function App() {
           <div className="M">
             <div className="z">
               {data.categories.map((tab, index) => {
+                console.log("tab ===>", tab);
+
                 return (
-                  <>
+                  <div key={index}>
                     {index < 6 && (
                       <div>
                         <h2>{tab.name}</h2>
 
-                        <div className="y">
-                          {tab.meals.map((meal, index) => {
-                            return (
-                              <>
-                                {index && (
-                                  <Item
-                                    title={meal.title}
-                                    description={meal.description}
-                                    price={meal.price}
-                                    popular={meal.popular}
-                                  />
-                                )}
-                                {/* <span>key={index}</span> */}
-                              </>
-                            );
-                          })}
-                        </div>
+                        <Item tab={tab.meals} />
                       </div>
                     )}
-                  </>
+                  </div>
                 );
               })}
             </div>
