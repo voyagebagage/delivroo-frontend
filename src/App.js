@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
+import Item from "./component/Item/Item";
+import Header from "./component/Header/Header";
+// import Restaurant from "../Restaurant/Restaurant";
 
 function App() {
   const [data, setData] = useState({});
@@ -22,43 +25,42 @@ function App() {
     <span>En cours de chargement... </span>
   ) : (
     <>
-      <div className="h">
-        <h2>{data.restaurant.name}</h2>
-        <p>{data.restaurant.description}</p>
-        <img
-          src="https://f.roocdn.com/images/menus/17697/header-image.jpg"
-          alt="resto"
-        />
-      </div>
-      <div className="k">
-        <div className="M">
-          <div>
-            {data.categories.map((tab, index) => {
-              return (
-                <>
-                  {index < 6 && (
-                    <div>
-                      <h2>{tab.name}</h2>
+      <div className="L">
+        <Header data={data} />
+
+        <div className="k">
+          <div className="M">
+            <div className="z">
+              {data.categories.map((tab, index) => {
+                return (
+                  <>
+                    {index < 6 && (
                       <div>
-                        {tab.meals.map((meal, index) => {
-                          return (
-                            <>
-                              <h3>{meal.title}</h3>
-                              <p>{meal.description}</p>
-                              <div>
-                                <span>{meal.price}</span>
-                                {meal.popular && <span>POP</span>}
-                              </div>
-                              {/* <span>key={index}</span> */}
-                            </>
-                          );
-                        })}
+                        <h2>{tab.name}</h2>
+
+                        <div className="y">
+                          {tab.meals.map((meal, index) => {
+                            return (
+                              <>
+                                {index && (
+                                  <Item
+                                    title={meal.title}
+                                    description={meal.description}
+                                    price={meal.price}
+                                    popular={meal.popular}
+                                  />
+                                )}
+                                {/* <span>key={index}</span> */}
+                              </>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </>
-              );
-            })}
+                    )}
+                  </>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
